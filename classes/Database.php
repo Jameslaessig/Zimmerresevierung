@@ -1,16 +1,27 @@
-<?php //
-class Database {
-    private static ?PDO $db = null;
+<?php
 
-    public static function getConnection(): PDO {
-        if (self::$db === null) {
-            self::$db = new PDO(
-                "mysql:host=localhost;dbname=zimmerreservierung;charset=utf8",
-                "root",
-                ""
-            );
-            self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+class Database
+{
+    private static $conn = null;
+
+    public static function getConnection()
+    {
+        if (self::$conn === null) {
+            try {
+                self::$conn = new PDO(
+                    "mysql:host=localhost;port=8889;dbname=zimmerreservierung;charset=utf8",
+                    "root",
+                    "root",
+                    [
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                    ]
+                );
+            } catch (PDOException $e) {
+                die("Datenbankverbindung fehlgeschlagen: " . $e->getMessage());
+            }
         }
-        return self::$db;
+
+        return self::$conn;
     }
 }

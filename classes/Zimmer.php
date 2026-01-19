@@ -25,7 +25,7 @@ class Zimmer implements DatabaseObject {
 
     public static function getAll(): array {
         return Database::getConnection()
-            ->query("SELECT * FROM zimmer")
+            ->query("SELECT * FROM rooms")
             ->fetchAll(PDO::FETCH_ASSOC);
     }
 
