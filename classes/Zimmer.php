@@ -1,6 +1,6 @@
 <?php
-require_once "Database.php";
-require_once "DatabaseObject.php";
+require_once __DIR__ . "/Database.php";
+require_once __DIR__ . "/DatabaseObject.php";
 
 class Zimmer implements DatabaseObject {
     private ?int $id;
