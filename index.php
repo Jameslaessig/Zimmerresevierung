@@ -3,15 +3,12 @@ require_once "classes/Gast.php";
 require_once "classes/Zimmer.php";
 require_once "classes/Reservierung.php";
 
-/* === FORM HANDLING === */
 
-// Gast speichern
 if (isset($_POST['add_gast'])) {
     $gast = new Gast($_POST['name'], $_POST['email'], $_POST['adresse']);
     $gast->save();
 }
 
-// Reservierung speichern
 if (isset($_POST['add_res'])) {
     $gastData   = Gast::getById($_POST['gast_id']);
     $zimmerData = Zimmer::getById($_POST['zimmer_id']);
@@ -30,7 +27,6 @@ if (isset($_POST['add_res'])) {
     $res->save();
 }
 
-/* === DATEN LADEN === */
 $gaeste = Gast::getAll();
 $zimmer = Zimmer::getAll();
 $reservierungen = Reservierung::getAll();
@@ -52,7 +48,6 @@ $reservierungen = Reservierung::getAll();
 
     <h1 class="mb-4">🏨 Zimmerreservierung</h1>
 
-    <!-- ================= GAST ANLEGEN ================= -->
     <div class="card mb-4">
         <div class="card-header">Gast anlegen</div>
         <div class="card-body">
@@ -73,7 +68,7 @@ $reservierungen = Reservierung::getAll();
         </div>
     </div>
 
-    <!-- ================= GÄSTE LISTE ================= -->
+
     <div class="card mb-4">
         <div class="card-header">Gäste</div>
         <ul class="list-group list-group-flush">
@@ -85,7 +80,6 @@ $reservierungen = Reservierung::getAll();
         </ul>
     </div>
 
-    <!-- ================= RESERVIERUNG ================= -->
     <div class="card mb-4">
         <div class="card-header">Reservierung anlegen</div>
         <div class="card-body">
@@ -127,7 +121,7 @@ $reservierungen = Reservierung::getAll();
         </div>
     </div>
 
-    <!-- ================= RESERVIERUNGEN ================= -->
+
     <div class="card">
         <div class="card-header">Reservierungen</div>
         <ul class="list-group list-group-flush">
